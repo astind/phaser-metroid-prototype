@@ -20,8 +20,15 @@ export class Game extends Phaser.Scene
       const tileset = map.addTilesetImage("metroid-zapchi", "tiles");
   
       const backgroundLayer = map.createLayer("backgroud", tileset, 0, 0);
-      const layoutLayer = map.createLayer("layout", tileset, 0, 0);
+      const worldLayer = map.createLayer("world", tileset, 0, 0);
       const texturesLayer = map.createLayer("textures", tileset, 0, 0);
+      worldLayer.setCollisionByProperty({ collides: true});
+      const debugGraphics = this.add.graphics().setAlpha(0.75);
+      worldLayer.renderDebug(debugGraphics, {
+        tileColor: null,
+        collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255),
+        faceColor: new Phaser.Display.Color(40, 39, 37, 255)
+      })
     }
   
     update(time, delta) {
